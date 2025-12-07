@@ -1,12 +1,14 @@
-from operator import is_
 import os
-import numpy as np
+from operator import is_
 from uuid import uuid4
-from pieces import Pawn, Rook, Bishop, Queen, King, Knight
+
+import numpy as np
+
+from pieces import Bishop, King, Knight, Pawn, Queen, Rook
 from util import (
-    map_piece_to_character,
     InvalidColumnException,
     InvalidRowException,
+    map_piece_to_character,
 )
 
 
@@ -47,7 +49,7 @@ class BoardBase:
                 for row in reversed(self.cells)
             ]
         )
-    
+
     def save_to_disk(self, fname = None):
         """
         Saves current board configuration to disk.
@@ -74,8 +76,8 @@ class BoardBase:
         """
         Read previously stored configuration from a memory string
 
-        :param name: Filename to use. 
-        """       
+        :param name: Filename to use.
+        """
         self.cells = [[None for _ in range(8)] for _ in range(8)]
 
         for row, line in enumerate(configString.split("\n")):
@@ -83,7 +85,7 @@ class BoardBase:
               for col, pieceCode in enumerate(line.split(' ')):
                 if pieceCode == '.':
                     continue
-                
+
                 if pieceCode.isupper():
                     white = True
                 else:
@@ -110,12 +112,12 @@ class BoardBase:
         """
         Read previously stored configuration from disk
 
-        :param name: Filename to use. 
-        """       
+        :param name: Filename to use.
+        """
 
         with open(fname, "rt") as f:
             self.load_from_memory(f.read())
-            
+
 
     def is_king_check_cached(self, white):
         """
@@ -216,14 +218,14 @@ class BoardBase:
 
 class Board(BoardBase):
     """
-    Your implementation of the chess board. You will need to find implementations for all of these methods. 
+    Your implementation of the chess board. You will need to find implementations for all of these methods.
 
-    **HINT**: Read the documentation carefully. Also look at the parent class (BoardBase) for further reference and example implementations. 
+    **HINT**: Read the documentation carefully. Also look at the parent class (BoardBase) for further reference and example implementations.
     """
 
     def __init__(self):
         """
-        Constructor, currently does nothing but calling the super constructor. 
+        Constructor, currently does nothing but calling the super constructor.
 
         """
         super().__init__()
@@ -320,7 +322,7 @@ class Board(BoardBase):
         the given piece "white" attribute.
         """
         # TODO: Implement
- 
+
 
     def piece_can_hit_on_cell(self, piece, cell):
         """

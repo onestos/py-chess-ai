@@ -1,7 +1,8 @@
-import pygame
 import numpy as np
-from pieces import Piece, Pawn, Rook, Bishop, Queen, King, Knight
+import pygame
+
 from engine import suggest_move, suggest_random_move
+from pieces import Bishop, King, Knight, Pawn, Piece, Queen, Rook
 
 
 class UIState:

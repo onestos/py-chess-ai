@@ -1,8 +1,10 @@
-from ui import run_game
-from board import Board
 import sys
-import tests 
 import unittest
+
+import tests
+from board import Board
+from ui import run_game
+
 
 def run_tests():
     print("🧪 Starte Unittests...")
@@ -16,7 +18,7 @@ def run_tests():
     else:
         sys.exit(1)
 
-def main():  
+def main():
     args = "test"
 
     if args == "manual":
