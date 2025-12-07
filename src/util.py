@@ -1,4 +1,5 @@
-from pieces import Pawn, Rook, Bishop, Queen, King, Knight
+from pieces import Bishop, King, Knight, Pawn, Queen, Rook
+
 
 def map_piece_to_fullname(piece):
     if piece is None:
