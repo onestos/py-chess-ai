@@ -5,9 +5,10 @@ description = "A chess game against ai"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "numpy == 2.3.5",
+    "numpy==2.3.5",
     "pygame == 2.6.1",
-    "unittest-prettify == 1.0.post4",
+    "tqdm>=4.67.1",
+    "unittest-prettify==1.0.post4",
 ]
 
 [dependency-groups]
