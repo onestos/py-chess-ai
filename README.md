@@ -11,15 +11,13 @@ from **Human vs Human** to **Human vs Computer using MiniMax**.
     - Random valid move
 - **Human vs Computer (MiniMax AI)**
 
-<details>
-<summary><h2>🧰 Tech Stack</h2></summary>
+## 🧰 Tech Stack
 
 - Python 3.11+
 - Object-Oriented Design
 - Modular and package-based architecture
 - UI via `pygame` or CLI
 - Dependency management with `uv`
-</details>
 
 <details>
 <summary><h2>✅ Prerequisites</h2></summary>
