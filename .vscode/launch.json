@@ -1,19 +1,21 @@
 {
     "version": "0.2.0",
     "configurations": [
-                {
+        {
             "name": "Run manual mode",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/main.py",
+            "env": { "PYTHONPATH": "${workspaceFolder}/src" },
+            "module": "chess_ai",
             "console": "integratedTerminal",
             "args": "--mode manual"
         },
-                {
+        {
             "name": "Run ai mode",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/main.py",
+            "env": { "PYTHONPATH": "${workspaceFolder}/src" },
+            "module": "chess_ai",
             "console": "integratedTerminal",
             "args": "--mode ai"
         },
@@ -21,7 +23,8 @@
             "name": "Run Tests",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/src/main.py",
+            "env": { "PYTHONPATH": "${workspaceFolder}/src" },
+            "module": "chess_ai",
             "console": "integratedTerminal",
             "args": "--mode test"
         }

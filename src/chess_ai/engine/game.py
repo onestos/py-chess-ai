@@ -1,16 +1,19 @@
+# game loop on top of domain
+
 import random
 
-from util import cell_to_string, map_piece_to_character
+from chess_ai.util.helpers import cell_to_string, map_piece_to_character
 
 DEPTH = 3
 
 
 class MinMaxArg:
-    """ Helper Class for the MinMax Algorithm.
+    """Helper Class for the MinMax Algorithm.
     This class stores the current search depth and whether we are playing as white or black in this stage.
 
     Note: You don´t need to implement anything in this case, you can use it in the MinMax Algorithm as you seem fit.
     """
+
     def __init__(self, depth=DEPTH, playAsWhite=True):
         """
         Initializes the class using the provided parameters
@@ -58,7 +61,7 @@ class Move:
         return s
 
 
-def evaluate_all_possible_moves(board, minMaxArg, maximumNumberOfMoves = 10):
+def evaluate_all_possible_moves(board, minMaxArg, maximumNumberOfMoves=10):
     """
     **TODO**:
     This method must evaluate all possible moves from all pieces of the current color.
@@ -180,12 +183,12 @@ def suggest_random_move(board):
     # TODO: Implement a valid random move
 
 
-
 def suggest_move(board):
     """
     Helper function to start the mini-max algorithm.
     """
     return minMax_cached(board, MinMaxArg())
+
 
 eval_cache = {}
 total_hits = 0

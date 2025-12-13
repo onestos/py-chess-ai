@@ -1,8 +1,8 @@
 import numpy as np
 import pygame
 
-from engine import suggest_move, suggest_random_move
-from pieces import Bishop, King, Knight, Pawn, Piece, Queen, Rook
+from chess_ai.domain.pieces import Bishop, King, Knight, Pawn, Piece, Queen, Rook
+from chess_ai.engine.game import suggest_move, suggest_random_move
 
 
 class UIState:
@@ -209,7 +209,6 @@ def run_game(board, manual=False):
                             uiState.mouse_over_cell[0] == valid_cell[0]
                             and uiState.mouse_over_cell[1] == valid_cell[1]
                         ):
-
                             piece = board.get_cell(uiState.selected_cell)
                             piece.board.set_cell(uiState.mouse_over_cell, piece)
 

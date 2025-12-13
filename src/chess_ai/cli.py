@@ -3,8 +3,9 @@ import sys
 import unittest
 
 import tests
-from board import Board
-from ui import run_game
+
+from chess_ai.domain.board import Board
+from chess_ai.ui.pygame_ui import run_game
 
 
 def run_tests():

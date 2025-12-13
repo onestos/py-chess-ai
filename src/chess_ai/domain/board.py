@@ -4,8 +4,8 @@ from uuid import uuid4
 
 import numpy as np
 
-from pieces import Bishop, King, Knight, Pawn, Queen, Rook
-from util import (
+from chess_ai.domain.pieces import Bishop, King, Knight, Pawn, Queen, Rook
+from chess_ai.util.helpers import (
     InvalidColumnException,
     InvalidRowException,
     map_piece_to_character,
@@ -50,7 +50,7 @@ class BoardBase:
             ]
         )
 
-    def save_to_disk(self, fname = None):
+    def save_to_disk(self, fname=None):
         """
         Saves current board configuration to disk.
 
@@ -59,7 +59,7 @@ class BoardBase:
         if fname is None:
             fname = str(uuid4())
 
-        if '.' not in fname:
+        if "." not in fname:
             fname += ".board"
 
         with open(fname, "wt") as f:
@@ -71,7 +71,6 @@ class BoardBase:
         """
         self.cells = [[None for _ in range(8)] for _ in range(8)]
 
-
     def load_from_memory(self, configString):
         """
         Read previously stored configuration from a memory string
@@ -81,9 +80,9 @@ class BoardBase:
         self.cells = [[None for _ in range(8)] for _ in range(8)]
 
         for row, line in enumerate(configString.split("\n")):
-              line = line.strip()
-              for col, pieceCode in enumerate(line.split(' ')):
-                if pieceCode == '.':
+            line = line.strip()
+            for col, pieceCode in enumerate(line.split(" ")):
+                if pieceCode == ".":
                     continue
 
                 if pieceCode.isupper():
@@ -106,7 +105,7 @@ class BoardBase:
                 if pieceCode == "R":
                     piece = Rook(self, white)
 
-                self.set_cell(np.array([7-row, col]), piece)
+                self.set_cell(np.array([7 - row, col]), piece)
 
     def load_from_disk(self, fname):
         """
@@ -117,7 +116,6 @@ class BoardBase:
 
         with open(fname, "rt") as f:
             self.load_from_memory(f.read())
-
 
     def is_king_check_cached(self, white):
         """
@@ -213,7 +211,7 @@ class BoardBase:
         self.set_cell(np.array([0, 4]), King(self, True))
         self.set_cell(np.array([7, 4]), King(self, False))
 
-        #self.save_to_disk()
+        # self.save_to_disk()
 
 
 class Board(BoardBase):
@@ -322,7 +320,6 @@ class Board(BoardBase):
         the given piece "white" attribute.
         """
         # TODO: Implement
-
 
     def piece_can_hit_on_cell(self, piece, cell):
         """

@@ -8,6 +8,7 @@ class Piece:
     A piece holds a reference to the board, its color and its currently located cell.
     In this class, you need to implement two methods, the "evaluate()" method and the "get_valid_cells()" method.
     """
+
     def __init__(self, board, white):
         """
         Constructor for a piece based on provided parameters
@@ -18,8 +19,6 @@ class Piece:
         self.board = board
         self.white = white
         self.cell = None
-
-
 
     def is_white(self):
         """
@@ -86,6 +85,7 @@ class Piece:
         :return: Return True
         """
         # TODO: Implement
+
 
 class Pawn(Piece):  # Bauer
     def __init__(self, board, white):

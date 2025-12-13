@@ -1,4 +1,4 @@
-from pieces import Bishop, King, Knight, Pawn, Queen, Rook
+from chess_ai.domain.pieces import Bishop, King, Knight, Pawn, Queen, Rook
 
 
 def map_piece_to_fullname(piece):
@@ -20,6 +20,7 @@ def map_piece_to_fullname(piece):
         c = "King"
 
     return c
+
 
 def map_piece_to_character(piece):
     if piece is None:
