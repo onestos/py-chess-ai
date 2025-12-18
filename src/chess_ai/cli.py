@@ -15,6 +15,9 @@ def run_tests():
     runner = unittest.TextTestRunner(verbosity=3)
     runner.failfast = False
     result = runner.run(suite)
+
+    # return 0 if result.wasSuccessful() else 1
+
     if result.wasSuccessful():
         sys.exit(0)
     else:

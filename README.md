@@ -7,8 +7,8 @@ from **Human vs Human** to **Human vs Computer using MiniMax**.
 
 - **Human vs Human**
 - **Human vs Computer (Random AI)**
-    - Random piece selection
-    - Random valid move
+  - Random piece selection
+  - Random valid move
 - **Human vs Computer (MiniMax AI)**
 
 ## 🧰 Tech Stack
@@ -24,6 +24,7 @@ from **Human vs Human** to **Human vs Computer using MiniMax**.
 
 - Python 3.11 or newer
 - [`uv`](https://github.com/astral-sh/uv)
+
 </details>
 
 <details>
@@ -48,6 +49,8 @@ uv run pre-commit install
 Always run the project through `uv` to ensure the correct environment.
 
 ```bash
+# Run with F5 in vs code for debuging
+
 # Human vs Human
 uv run python -m chess_ai --mode manual
 
@@ -79,6 +82,6 @@ All tests **must pass** during evaluation.
 
 ## 🤝 Team Workflow
 
-* Incremental weekly progress
-* Git-based collaboration
-* Code reviews before merging
+- Incremental weekly progress
+- Git-based collaboration
+- Code reviews before merging
