@@ -3,14 +3,12 @@ from operator import is_
 from uuid import uuid4
 
 import numpy as np
-
-from src.chess_ai.domain.pieces import Bishop, King, Knight, Pawn, Queen, Rook, Piece
+from src.chess_ai.domain.pieces import Bishop, King, Knight, Pawn, Queen, Rook
 from src.chess_ai.util.helpers import (
     InvalidColumnException,
     InvalidRowException,
     map_piece_to_character,
 )
-from tests.test_ import iterate_pieces
 
 
 class BoardBase:
@@ -243,7 +241,7 @@ class Board(BoardBase):
         """
         for row in self.cells:
             for cell in row:
-                if cell is not None and cell.white == white:
+                if cell is not None and cell.is_white() == white:
                     yield cell
 
     def find_king(self, white):
@@ -266,7 +264,6 @@ class Board(BoardBase):
 
         return None
 
-
     def is_king_check(self, white):
         """
         **TODO**: Evaluate if the king of given color is currently in check.
@@ -278,14 +275,12 @@ class Board(BoardBase):
         Iterate over each reachable cell and check if the kings cell is reachable. If yes, shortcut and return True right away.
         """
         # TODO: Implement
-        king = self.find_king(white=white)
+        king_cell = self.find_king(white=white)
 
-        #if king is None:
-            #return False
+        if king_cell is None:
+            return False
 
-        king_cell = king.cell
-
-        for opposing_piece in self.iterate_cells_with_pieces(white= not white):
+        for opposing_piece in self.iterate_cells_with_pieces(white=not white):
             reachable_cells = opposing_piece.get_reachable_cells()
 
             for reachable_cell in reachable_cells:
@@ -306,6 +301,13 @@ class Board(BoardBase):
         """
         # TODO: Implement
         score = 0.0
+
+        for white_pieces in self.iterate_cells_with_pieces(True):
+            score += white_pieces.evaluate()
+
+        for black_pieces in self.iterate_cells_with_pieces(False):
+            score -= black_pieces.evaluate()
+
         return score
 
     def is_valid_cell(self, cell):
@@ -325,7 +327,6 @@ class Board(BoardBase):
         row, col = cell
         return 0 <= row <= 7 and 0 <= col <= 7
 
-
     def cell_is_valid_and_empty(self, cell):
         """
         **TODO**: Check if the given cell is empty, meaning there is no piece placed on it.
@@ -335,11 +336,10 @@ class Board(BoardBase):
         If so, use "get_cell()" to retrieve the piece placed on it and return True if there is None
         """
         # TODO: Implement
-        if not self.is_valid_cell(cell=cell):
+        if not self.is_valid_cell(cell):
             return False
 
-        return self.get_cell(cell=cell) is None
-
+        return self.get_cell(cell) is None
 
     def piece_can_enter_cell(self, piece, cell):
         """
@@ -356,20 +356,14 @@ class Board(BoardBase):
         If, however, there is another piece, it must be of opposing color. Check the other pieces "white" attribute and compare against
         the given piece "white" attribute.
         """
-        # TODO: Implement
 
-        target_piece = self.get_cell(cell=cell)
+        target_piece = self.get_cell(cell)
 
-        #Checks if cell is valid
-        if self.is_valid_cell(cell=cell) == False:
-            return False
+        if self.is_valid_cell(cell):
+            if target_piece is None or target_piece.is_white() != piece.is_white():
+                return True
 
-        #If cell is empty,
-        if target_piece is None:
-            return True
-
-        return target_piece.white != piece.white
-
+        return False
 
     def piece_can_hit_on_cell(self, piece, cell):
         """
@@ -386,16 +380,10 @@ class Board(BoardBase):
         If, however, there is another piece, it must be of opposing color. Check the other pieces "white" attribute and compare against
         the given piece "white" attribute.
         """
-        # TODO: Implement
-
         target_piece = self.get_cell(cell=cell)
 
-        #Checks if cell is valid
-        if self.is_valid_cell(cell=cell) == False:
-            return False
+        if target_piece is not None and self.is_valid_cell(cell):
+            if target_piece.is_white() != piece.is_white():
+                return True
 
-        #If cell is empty, piece cannot hit
-        if target_piece is None:
-            return False
-
-        return target_piece.white != piece.white
+        return False
