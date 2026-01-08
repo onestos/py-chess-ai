@@ -31,7 +31,7 @@ def print_movability_error(board, piece, cell, positiveMovement):
     RESET = "\x1b[37m"
     text = RED + "Movability wrongly implemented. In this configuration\n\n"
     for row in range(7, -1, -1):
-        text += "        " + RESET + f"{row+1} "
+        text += "        " + RESET + f"{row + 1} "
         for col in range(8):
             color = RESET
             if piece.cell[0] == row and piece.cell[1] == col:
